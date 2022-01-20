@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Post
 
 # Create your views here.
 def home(request):
@@ -8,4 +9,10 @@ def about(request):
     return render(request, 'mysite/about.html', {'title': 'About'})
 
 def blog(request):
-    return render(request, 'mysite/blog.html')
+    context = {
+        'posts': Post.objects.all()
+    }
+    return render(request, 'mysite/blog.html', context)
+
+def resources(request):
+    return render(request, 'mysite/resources.html')
